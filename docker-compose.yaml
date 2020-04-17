@@ -1,0 +1,19 @@
+##export JENKINS_WORK_DIR=??
+
+version: '3.8'
+services:
+  jenkins_master:
+    build: ./jenkins_master/
+    restart: always
+    ports:
+    - "8080:8080" # Jenkins HTTP Listener port
+    - '50000:50000' # JNLP
+    volumes:
+    - '${JENKINS_WORK_DIR}:/var/jenkins_home'
+    - /var/run/docker.sock:/var/run/docker.sock
+
+  jenkins_slave:
+    build: './jenkins_slave/'
+    restart: always
+    volumes:
+    - '/var/run/docker.sock:/var/run/docker.sock'

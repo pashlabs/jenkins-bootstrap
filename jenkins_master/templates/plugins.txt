@@ -1,0 +1,5 @@
+credentials
+git
+docker
+cloudbees-folder
+terraform
